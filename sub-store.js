@@ -49,32 +49,6 @@ if (overrides.rules) config.rules = [...overrides.rules, ...config.rules];
 for (const group of config["proxy-groups"]) {
   if (overrides.testUrls?.[group.name]) group.url = overrides.testUrls[group.name];
 }
-// Isolate experimental two-hop copies from all existing include-all groups.
-const chainEntry = "[akk] 香港--高速实验性节点1--FX 6倍率";
-const entry = config.proxies.find(proxy => proxy.name === chainEntry);
-if (!entry) throw new Error("AI test entry node is missing: " + chainEntry);
-const usFilter = new RegExp(config["proxy-groups"].find(group => group.name === "🇺🇲 美国节点").filter);
-const exits = config.proxies.filter(proxy => proxy.name !== chainEntry && usFilter.test(proxy.name));
-if (!exits.length) throw new Error("No US exit nodes available for AI test");
-const chainNodes = exits.map(proxy => ({
-  ...proxy,
-  name: "AI-CHAIN: " + proxy.name,
-  "dialer-proxy": chainEntry,
-}));
-for (const group of config["proxy-groups"]) {
-  if (group["include-all"]) {
-    group["exclude-filter"] = [group["exclude-filter"], "^AI-CHAIN: "].filter(Boolean).join("|");
-  }
-}
-config.proxies.push(...chainNodes);
-config["proxy-groups"].push({
-  name: "ai-test",
-  type: "url-test",
-  proxies: chainNodes.map(proxy => proxy.name),
-  url: "https://chatgpt.com/",
-  interval: 300,
-  tolerance: 50,
-});
 // Test each original entry through the same DMIT exit.
 const dmitExit = incoming.proxies.find(proxy => proxy.name === "[dmit] DMIT-REALITY");
 if (!dmitExit) throw new Error("DMIT exit node is missing");
