@@ -14,10 +14,10 @@ rules:
 - RULE-SET,gemini,AI
 - RULE-SET,Slack,DIRECT
 - RULE-SET,AI,AI
-- DOMAIN-SUFFIX,oaifree.com,DIRECT
+- DOMAIN-SUFFIX,oaifree.com,AI
 - DOMAIN-SUFFIX,slack.com,DIRECT
 - IP-CIDR,192.168.0.0/16,DIRECT
-- DOMAIN-SUFFIX,bitbucket.org,🇭🇰 香港节点
+- DOMAIN-SUFFIX,bitbucket.org,☁️ AWS-EKS
 - DOMAIN-SUFFIX,eks.eu-west-1.amazonaws.com,☁️ AWS-EKS
 - DOMAIN-SUFFIX,sts.amazonaws.com,☁️ AWS-EKS
 - DOMAIN-SUFFIX,amazonaws.com,☁️ AWS-EKS
