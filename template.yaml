@@ -8,6 +8,7 @@ dns:
 profile:
   store-selected: true
 x-rule-files:
+- routing/aws-regions.yaml
 - routing/priority.yaml
 - routing/international.yaml
 - routing/services-media.yaml
@@ -179,3 +180,21 @@ proxy-groups:
   url: https://link00.yyssr.org:2053/web/index.html
   interval: 300
   tolerance: 0
+
+- name: AWS-Singapore
+  type: url-test
+  include-all: true
+  proxies:
+  - DIRECT
+  url: https://ap-southeast-1.console.aws.amazon.com/
+  interval: 300
+  tolerance: 50
+
+- name: AWS-US
+  type: url-test
+  include-all: true
+  proxies:
+  - DIRECT
+  url: https://us-east-1.console.aws.amazon.com/
+  interval: 300
+  tolerance: 50

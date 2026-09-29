@@ -61,3 +61,12 @@ It removes nodes whose original names start with 移动流量推荐, prefixes na
 other collection node transformations. Subscription credentials remain in Sub-Store.
 The full-file subscription statistics source is configured separately; statistics
 from one provider must not be presented as aggregate usage across all providers.
+
+## Regional AWS routing
+
+AWS-Singapore tests ap-southeast-1.console.aws.amazon.com; AWS-US tests
+us-east-1.console.aws.amazon.com as a representative US destination. Both include
+all source nodes and DIRECT. Regional console, sign-in and API rules run before
+general AWS rules; unrecognized/global AWS domains retain the existing AWS-EKS
+policy. Private work-domain overrides remain first. A console HEAD response can
+be a login redirect; this measures connectivity, not authenticated page load time.
