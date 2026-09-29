@@ -1,0 +1,27 @@
+# Ordered routing rules; preserve first-match precedence.
+rules:
+- GEOSITE,microsoft@cn,DIRECT
+- GEOSITE,openai,AI
+- RULE-SET,OpenAI,AI
+- RULE-SET,Claude_MASTER,AI
+- RULE-SET,Claude_MASTER_CDN,AI
+- RULE-SET,Claude_MASTER_GHProxy,AI
+- RULE-SET,Claude_Release,AI
+- RULE-SET,Claude_Release_CDN,AI
+- RULE-SET,Claude_Release_GHProxy,AI
+- RULE-SET,cursor,AI
+- RULE-SET,anthropic,AI
+- RULE-SET,gemini,AI
+- RULE-SET,Slack,DIRECT
+- RULE-SET,AI,AI
+- DOMAIN-SUFFIX,oaifree.com,DIRECT
+- DOMAIN-SUFFIX,slack.com,DIRECT
+- IP-CIDR,192.168.0.0/16,DIRECT
+- DOMAIN-SUFFIX,bitbucket.org,🇭🇰 香港节点
+- DOMAIN-SUFFIX,eks.eu-west-1.amazonaws.com,☁️ AWS-EKS
+- DOMAIN-SUFFIX,sts.amazonaws.com,☁️ AWS-EKS
+- DOMAIN-SUFFIX,amazonaws.com,☁️ AWS-EKS
+- PROCESS-NAME,linphone.exe,DIRECT
+- DOMAIN-SUFFIX,smtp,DIRECT
+- DOMAIN-KEYWORD,aria2,DIRECT
+- RULE-SET,Microsoft,Microsoft

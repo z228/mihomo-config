@@ -4,6 +4,19 @@ if (!templateUrl) throw new Error("Missing template URL argument");
 const response = await $substore.http.get({ url: templateUrl });
 const config = ProxyUtils.yaml.safeLoad(response.body);
 const revisionBase = templateUrl.slice(0, templateUrl.lastIndexOf("/") + 1);
+// Fetch independent files concurrently; concatenate in manifest order.
+if (config["x-rule-files"]) {
+  const sections = await Promise.all(config["x-rule-files"].map(async (path) => {
+    const result = await $substore.http.get({ url: revisionBase + path });
+    const section = ProxyUtils.yaml.safeLoad(result.body);
+    if (!Array.isArray(section?.rules) || !section.rules.every(rule => typeof rule === "string")) {
+      throw new Error("Invalid routing rules: " + path);
+    }
+    return section.rules;
+  }));
+  config.rules = sections.flat();
+  delete config["x-rule-files"];
+}
 for (const provider of Object.values(config["rule-providers"] || {})) {
   const prefix = "https://raw.githubusercontent.com/z228/mihomo-config/main/";
   if (provider.url?.startsWith(prefix)) {

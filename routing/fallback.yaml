@@ -1,0 +1,3 @@
+# Ordered routing rules; preserve first-match precedence.
+rules:
+- MATCH,⚓️其他流量
