@@ -52,3 +52,12 @@ The x-rule-files field is removed from the generated configuration.
 
 These files contain full rules including policy names. They differ from rules/ai.yaml
 and external rule providers, which remain separate provider payloads.
+
+## Collection node processing
+
+Use collection.js as a remote Script Operator on the combined subscription.
+It removes nodes whose original names start with 移动流量推荐, prefixes names with
+[_subName], and adds numeric suffixes for remaining duplicate names. Apply it after
+other collection node transformations. Subscription credentials remain in Sub-Store.
+The full-file subscription statistics source is configured separately; statistics
+from one provider must not be presented as aggregate usage across all providers.
