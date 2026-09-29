@@ -162,6 +162,7 @@ proxy-groups:
   filter: 香港|HK|Hong Kong|HongKong|🇭🇰
 - name: AI
   type: select
+  url: https://chatgpt.com/
   proxies:
   - 🇺🇲 美国节点
   include-all: true
