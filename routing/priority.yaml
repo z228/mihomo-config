@@ -1,5 +1,6 @@
 # Ordered routing rules; preserve first-match precedence.
 rules:
+- DOMAIN,link00.yyssr.org,emby
 - GEOSITE,microsoft@cn,DIRECT
 - GEOSITE,openai,AI
 - RULE-SET,OpenAI,AI
