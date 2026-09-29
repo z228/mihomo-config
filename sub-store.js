@@ -58,12 +58,12 @@ const exits = config.proxies.filter(proxy => proxy.name !== chainEntry && usFilt
 if (!exits.length) throw new Error("No US exit nodes available for AI test");
 const chainNodes = exits.map(proxy => ({
   ...proxy,
-  name: "[ai-chain] " + proxy.name,
+  name: "AI-CHAIN: " + proxy.name,
   "dialer-proxy": chainEntry,
 }));
 for (const group of config["proxy-groups"]) {
   if (group["include-all"]) {
-    group["exclude-filter"] = [group["exclude-filter"], "^\\\\[ai-chain\\\\] "].filter(Boolean).join("|");
+    group["exclude-filter"] = [group["exclude-filter"], "^AI-CHAIN: "].filter(Boolean).join("|");
   }
 }
 config.proxies.push(...chainNodes);
