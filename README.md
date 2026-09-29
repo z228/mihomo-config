@@ -1,41 +1,31 @@
 # Mihomo configuration for Sub-Store
 
-A public routing script for Sub-Store's mihomo configuration file type.
-Node credentials, subscription URLs, and private work domains are not stored here.
+## Files
 
-## Setup
+- template.yaml: groups, rules, and rule providers. Edit this for routing changes.
+- sub-store.js: small runtime adapter that loads the template, preserves source nodes,
+  applies private overrides, and enables the AWS REALITY compatibility flag.
 
-1. Create a mihomo configuration file in Sub-Store.
-2. Select your collection as the source.
-3. Add a remote Script Operator pointing to the raw URL of sub-store.js.
-4. Copy the generated Sub-Store file URL into your client.
+Select a collection as the source of a Sub-Store mihomo configuration file.
+Apply private YAML overrides first, then the remote JavaScript operation.
+Pass the template URL through the script URL fragment:
+sub-store.js#template=https%3A%2F%2Fraw.githubusercontent.com%2Fz228%2Fmihomo-config%2Fmain%2Ftemplate.yaml
 
-The script URL is for Sub-Store, not a client subscription URL.
-Use a commit-pinned raw URL for reproducible deployments.
+Pin both URLs to tested commit hashes for reproducible deployments.
+A main-branch URL follows future changes (subject to Sub-Store caching).
 
-## Behavior
+Private YAML lives in a separate private Git repository and is copied into
+Sub-Store during deployment. Updating that repository alone does not deploy it.
+No GitHub credentials are stored in Sub-Store.
 
-Native include-all and filter settings populate regional and service groups.
-AWS-EKS includes all nodes. REALITY properties are preserved and
-support-x25519mlkem768 is enabled for nodes whose names begin with [aws-.
+Native include-all and filter options populate groups from the selected source.
+AWS-EKS includes every node. Private overrides can supply rules and testUrls
+inside x-private-overrides; the runtime adapter removes this input-only field.
 
-An optional preceding local Script Operator can set x-private-overrides on
-the input configuration, with rules (an array of high-priority rules) and
-testUrls (a map of group names to test URLs). Keep private overrides on the server.
-The generated subscription contains credentials; keep its URL private.
-
-## Validation
-
-The script has been checked with synthetic nodes and private overrides.
-Validate real generated output using the client's Mihomo version before deployment.
+The generated Sub-Store file URL, not the script URL, belongs in Clash.
+The generated configuration contains credentials and must remain private.
 
 ## Design reference
 
-Native group inclusion and external rule providers were reviewed against
-https://github.com/zrj866/mihomo. Personal node names, Telegram region rules,
-DNS/TUN settings, and the AI rule list from that repository were not imported.
-This script is derived from the existing deployment.
-
-## Script URL
-
-https://raw.githubusercontent.com/z228/mihomo-config/main/sub-store.js
+https://github.com/zrj866/mihomo informed the native group inclusion approach.
+Its personal node references, DNS/TUN settings, and rule lists were not copied.
