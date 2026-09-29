@@ -9,60 +9,20 @@ profile:
   store-selected: true
 rules:
 - GEOSITE,microsoft@cn,DIRECT
-- GEOSITE,openai,myGPT
-- RULE-SET,OpenAI,myGPT
-- RULE-SET,Claude_MASTER,myGPT
-- RULE-SET,Claude_MASTER_CDN,myGPT
-- RULE-SET,Claude_MASTER_GHProxy,myGPT
-- RULE-SET,Claude_Release,myGPT
-- RULE-SET,Claude_Release_CDN,myGPT
-- RULE-SET,Claude_Release_GHProxy,myGPT
-- RULE-SET,cursor,myGPT
-- RULE-SET,anthropic,myGPT
-- RULE-SET,gemini,myGPT
+- GEOSITE,openai,AI
+- RULE-SET,OpenAI,AI
+- RULE-SET,Claude_MASTER,AI
+- RULE-SET,Claude_MASTER_CDN,AI
+- RULE-SET,Claude_MASTER_GHProxy,AI
+- RULE-SET,Claude_Release,AI
+- RULE-SET,Claude_Release_CDN,AI
+- RULE-SET,Claude_Release_GHProxy,AI
+- RULE-SET,cursor,AI
+- RULE-SET,anthropic,AI
+- RULE-SET,gemini,AI
 - RULE-SET,Slack,DIRECT
-- DOMAIN,servd-anthropic-website.b-cdn.net,myGPT
-- DOMAIN,cdn.usefathom.com,myGPT
-- DOMAIN-SUFFIX,anthropic.com,myGPT
-- DOMAIN-SUFFIX,claude.ai,myGPT
-- DOMAIN-SUFFIX,generativelanguage.googleapis.com,myGPT
-- DOMAIN-SUFFIX,fuclaude.com,myGPT
+- RULE-SET,AI,AI
 - DOMAIN-SUFFIX,oaifree.com,DIRECT
-- DOMAIN-SUFFIX,claude.com,myGPT
-- DOMAIN-SUFFIX,auth.openai.com,myGPT
-- DOMAIN-SUFFIX,chatgpt.com,myGPT
-- DOMAIN-SUFFIX,ct.sendgrid.net,myGPT
-- DOMAIN-SUFFIX,featuregates.org,myGPT
-- DOMAIN-SUFFIX,intercom.io,myGPT
-- DOMAIN-SUFFIX,intercomcdn.com,myGPT
-- DOMAIN-SUFFIX,oaistatic.com,myGPT
-- DOMAIN-SUFFIX,oaiusercontent.com,myGPT
-- DOMAIN-SUFFIX,openai.com,myGPT
-- DOMAIN-SUFFIX,statsig.com,myGPT
-- DOMAIN,android.chat.openai.com,myGPT
-- DOMAIN,auth0.openai.com,myGPT
-- DOMAIN,cdn.openaimerge.com,myGPT
-- DOMAIN,cdn.workos.com,myGPT
-- DOMAIN,challenges.cloudflare.com,myGPT
-- DOMAIN,chat.openai.com,myGPT
-- DOMAIN,desktop.chat.openai.com,myGPT
-- DOMAIN,events.statsigapi.net,myGPT
-- DOMAIN,featureassets.org,myGPT
-- DOMAIN,forwarder.workos.com,myGPT
-- DOMAIN,humb.apple.com,myGPT
-- DOMAIN,images.workoscdn.com,myGPT
-- DOMAIN,ios.chat.openai.com,myGPT
-- DOMAIN,js.intercomcdn.com,myGPT
-- DOMAIN,js.stripe.com,myGPT
-- DOMAIN,o207216.ingest.sentry.io,myGPT
-- DOMAIN,o33249.ingest.sentry.io,myGPT
-- DOMAIN,prodregistryv2.org,myGPT
-- DOMAIN,rum.browser-intake-datadoghq.com,myGPT
-- DOMAIN,setup.auth.openai.com,myGPT
-- DOMAIN,setup.workos.com,myGPT
-- DOMAIN,statsigapi.net,myGPT
-- DOMAIN,tcr9i.chat.openai.com,myGPT
-- DOMAIN,workos.imgix.net,myGPT
 - DOMAIN-SUFFIX,slack.com,DIRECT
 - IP-CIDR,192.168.0.0/16,DIRECT
 - DOMAIN-SUFFIX,bitbucket.org,🇭🇰 香港节点
@@ -70,8 +30,6 @@ rules:
 - DOMAIN-SUFFIX,sts.amazonaws.com,☁️ AWS-EKS
 - DOMAIN-SUFFIX,amazonaws.com,☁️ AWS-EKS
 - PROCESS-NAME,linphone.exe,DIRECT
-- PROCESS-NAME,ChatGPT.exe,myGPT
-- PROCESS-NAME,codex.exe,myGPT
 - DOMAIN-SUFFIX,smtp,DIRECT
 - DOMAIN-KEYWORD,aria2,DIRECT
 - DOMAIN-SUFFIX,ampproject.org,🔰国外流量
@@ -629,23 +587,8 @@ rules:
 - DOMAIN-SUFFIX,me.com,🍎苹果服务
 - DOMAIN-SUFFIX,mzstatic.com,🍎苹果服务
 - DOMAIN,www-cdn.icloud.com.akadns.net,🍎苹果服务
-- DOMAIN-SUFFIX,t.me,✈️Telegram
-- DOMAIN-SUFFIX,tdesktop.com,✈️Telegram
-- DOMAIN-SUFFIX,telegra.ph,✈️Telegram
-- DOMAIN-SUFFIX,telegram.me,✈️Telegram
-- DOMAIN-SUFFIX,telegram.org,✈️Telegram
-- IP-CIDR,91.108.4.0/22,✈️Telegram,no-resolve
-- IP-CIDR,91.108.8.0/22,✈️Telegram,no-resolve
-- IP-CIDR,91.108.12.0/22,✈️Telegram,no-resolve
-- IP-CIDR,91.108.16.0/22,✈️Telegram,no-resolve
-- IP-CIDR,91.108.56.0/22,✈️Telegram,no-resolve
-- IP-CIDR,149.154.160.0/20,✈️Telegram,no-resolve
-- IP-CIDR6,2001:b28:f23d::/48,✈️Telegram,no-resolve
-- IP-CIDR6,2001:b28:f23f::/48,✈️Telegram,no-resolve
-- IP-CIDR6,2001:67c:4e8::/48,✈️Telegram,no-resolve
-- DOMAIN-SUFFIX,googlevideo.com,🎬Youtube
-- DOMAIN-SUFFIX,youtube.com,🎬Youtube
-- DOMAIN,youtubei.googleapis.com,🎬Youtube
+- RULE-SET,Telegram,✈️Telegram
+- RULE-SET,YouTube,🎬Youtube
 - DOMAIN-SUFFIX,netflix.com,🎬Netflix
 - DOMAIN-SUFFIX,netflix.net,🎬Netflix
 - DOMAIN-SUFFIX,nflxext.com,🎬Netflix
@@ -1180,6 +1123,7 @@ rules:
 - DOMAIN,images-cn.ssl-images-amazon.com,DIRECT
 - IP-CIDR,119.28.28.28/32,DIRECT,no-resolve
 - GEOIP,CN,DIRECT
+- RULE-SET,Microsoft,Microsoft
 - MATCH,⚓️其他流量
 rule-providers:
   OpenAI:
@@ -1247,6 +1191,34 @@ rule-providers:
     behavior: classical
     url: https://raw.githubusercontent.com/SkywalkerJi/Clash-Rules/refs/heads/master/AI/Gemini.yaml
     path: ./Gemini.yaml
+    interval: 86400
+  YouTube:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/zrj866/mihomo/4a0c54921fa44c3dd4391a3c9314f20e64971d81/mihomo/YouTube.yaml
+    path: ./ruleset/YouTube.yaml
+    interval: 86400
+  Microsoft:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/zrj866/mihomo/4a0c54921fa44c3dd4391a3c9314f20e64971d81/mihomo/Microsoft.yaml
+    path: ./ruleset/Microsoft.yaml
+    interval: 86400
+  Telegram:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/zrj866/mihomo/4a0c54921fa44c3dd4391a3c9314f20e64971d81/TelegramALL.yaml
+    path: ./ruleset/Telegram.yaml
+    interval: 86400
+  AI:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/z228/mihomo-config/main/rules/ai.yaml
+    path: ./ruleset/AI.yaml
     interval: 86400
 proxy-groups:
 - name: 🔰国外流量
@@ -1353,7 +1325,7 @@ proxy-groups:
   proxies: []
   include-all: true
   filter: 德国|英国|法国|荷兰|欧洲|EU|Europe|Germany|UK|France|Netherlands|Ireland|爱尔兰|🇩🇪|🇬🇧|🇫🇷
-- name: myGPT
+- name: AI
   type: select
   proxies:
   - 🇺🇲 美国节点
@@ -1364,4 +1336,10 @@ proxy-groups:
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies: []
+  include-all: true
+- name: Microsoft
+  type: select
+  proxies:
+  - DIRECT
+  - 🔰国外流量
   include-all: true

@@ -3,6 +3,13 @@ const templateUrl = $arguments.template;
 if (!templateUrl) throw new Error("Missing template URL argument");
 const response = await $substore.http.get({ url: templateUrl });
 const config = ProxyUtils.yaml.safeLoad(response.body);
+const revisionBase = templateUrl.slice(0, templateUrl.lastIndexOf("/") + 1);
+for (const provider of Object.values(config["rule-providers"] || {})) {
+  const prefix = "https://raw.githubusercontent.com/z228/mihomo-config/main/";
+  if (provider.url?.startsWith(prefix)) {
+    provider.url = revisionBase + provider.url.slice(prefix.length);
+  }
+}
 
 
 // The selected source supplies nodes; local overrides stay private.

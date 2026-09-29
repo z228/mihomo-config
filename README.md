@@ -29,3 +29,9 @@ The generated configuration contains credentials and must remain private.
 
 https://github.com/zrj866/mihomo informed the native group inclusion approach.
 Its personal node references, DNS/TUN settings, and rule lists were not copied.
+
+## Rule sets
+
+rules/ai.yaml maintains local AI domain and process rules. Existing AI providers remain enabled.
+YouTube, Microsoft, and TelegramALL rule sets are referenced from zrj866/mihomo at commit 4a0c54921fa44c3dd4391a3c9314f20e64971d81.
+Microsoft domestic exceptions retain priority; the Microsoft selector defaults to DIRECT.
