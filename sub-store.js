@@ -23,7 +23,15 @@ for (const proxy of config.proxies) {
     proxy["reality-opts"]["support-x25519mlkem768"] = true;
   }
 }
-const overrides = incoming["x-private-overrides"] || {};
+let overrides = incoming["x-private-overrides"] || {};
+if ($arguments.privateUrl) {
+  const privateResponse = await $substore.http.get({ url: $arguments.privateUrl });
+  const privateConfig = ProxyUtils.yaml.safeLoad(privateResponse.body);
+  if (!privateConfig?.["x-private-overrides"]) {
+    throw new Error("Private Git source returned invalid overrides");
+  }
+  overrides = privateConfig["x-private-overrides"];
+}
 if (overrides.rules) config.rules = [...overrides.rules, ...config.rules];
 for (const group of config["proxy-groups"]) {
   if (overrides.testUrls?.[group.name]) group.url = overrides.testUrls[group.name];

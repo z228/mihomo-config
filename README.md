@@ -35,3 +35,7 @@ Its personal node references, DNS/TUN settings, and rule lists were not copied.
 rules/ai.yaml maintains local AI domain and process rules. Existing AI providers remain enabled.
 YouTube, Microsoft, and TelegramALL rule sets are referenced from zrj866/mihomo at commit 4a0c54921fa44c3dd4391a3c9314f20e64971d81.
 Microsoft domestic exceptions retain priority; the Microsoft selector defaults to DIRECT.
+
+## Single-operation setup
+
+The remote script accepts privateUrl in its URL fragment. When provided, it fetches private YAML itself, so no preceding override operation is required. The private URL must be reachable from the Sub-Store backend. Do not place access tokens in public files.
