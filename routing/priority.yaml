@@ -17,20 +17,20 @@ rules:
 - DOMAIN-SUFFIX,oaifree.com,AI
 - DOMAIN-SUFFIX,slack.com,DIRECT
 - IP-CIDR,192.168.0.0/16,DIRECT
-- DOMAIN-SUFFIX,bitbucket.org,☁️ AWS-EKS
-- DOMAIN-SUFFIX,eks.eu-west-1.amazonaws.com,☁️ AWS-EKS
-- DOMAIN-SUFFIX,sts.amazonaws.com,☁️ AWS-EKS
-- DOMAIN-SUFFIX,amazonaws.com,☁️ AWS-EKS
-- DOMAIN-SUFFIX,aws.amazon.com,☁️ AWS-EKS
-- DOMAIN-SUFFIX,api.aws,☁️ AWS-EKS
-- DOMAIN-SUFFIX,signin.aws,☁️ AWS-EKS
-- DOMAIN-SUFFIX,awsstatic.com,☁️ AWS-EKS
-- DOMAIN-SUFFIX,awsapps.com,☁️ AWS-EKS
-- DOMAIN-SUFFIX,console.aws.a2z.com,☁️ AWS-EKS
-- DOMAIN-SUFFIX,app.aws,☁️ AWS-EKS
-- DOMAIN-SUFFIX,aws.dev,☁️ AWS-EKS
-- DOMAIN-SUFFIX,amazonaws.com.cn,☁️ AWS-EKS
-- DOMAIN-SUFFIX,api.amazonwebservices.com.cn,☁️ AWS-EKS
+- DOMAIN-SUFFIX,bitbucket.org,zc-work
+- DOMAIN-SUFFIX,eks.eu-west-1.amazonaws.com,zc-work
+- DOMAIN-SUFFIX,sts.amazonaws.com,zc-work
+- DOMAIN-SUFFIX,amazonaws.com,zc-work
+- DOMAIN-SUFFIX,aws.amazon.com,zc-work
+- DOMAIN-SUFFIX,api.aws,zc-work
+- DOMAIN-SUFFIX,signin.aws,zc-work
+- DOMAIN-SUFFIX,awsstatic.com,zc-work
+- DOMAIN-SUFFIX,awsapps.com,zc-work
+- DOMAIN-SUFFIX,console.aws.a2z.com,zc-work
+- DOMAIN-SUFFIX,app.aws,zc-work
+- DOMAIN-SUFFIX,aws.dev,zc-work
+- DOMAIN-SUFFIX,amazonaws.com.cn,zc-work
+- DOMAIN-SUFFIX,api.amazonwebservices.com.cn,zc-work
 - PROCESS-NAME,linphone.exe,DIRECT
 - DOMAIN-SUFFIX,smtp,DIRECT
 - DOMAIN-KEYWORD,aria2,DIRECT

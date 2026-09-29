@@ -166,7 +166,7 @@ proxy-groups:
   - 🇺🇲 美国节点
   include-all: true
   filter: ^\[aws-
-- name: ☁️ AWS-EKS
+- name: zc-work
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 300

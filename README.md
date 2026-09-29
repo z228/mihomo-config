@@ -20,7 +20,7 @@ service fetches its main branch on request; Sub-Store stores no override copy.
 No GitHub credentials are stored in Sub-Store.
 
 Native include-all and filter options populate groups from the selected source.
-AWS-EKS includes every node. Private overrides can supply rules and testUrls
+zc-work includes every node. Private overrides can supply rules and testUrls
 inside x-private-overrides; the runtime adapter removes this input-only field.
 
 The generated Sub-Store file URL, not the script URL, belongs in Clash.
@@ -67,6 +67,6 @@ from one provider must not be presented as aggregate usage across all providers.
 AWS-Singapore tests ap-southeast-1.console.aws.amazon.com; AWS-US tests
 us-east-1.console.aws.amazon.com as a representative US destination. Both include
 all source nodes and DIRECT. Regional console, sign-in and API rules run before
-general AWS rules; unrecognized/global AWS domains retain the existing AWS-EKS
+general AWS rules; unrecognized/global AWS domains retain the existing zc-work
 policy. Private work-domain overrides remain first. A console HEAD response can
 be a login redirect; this measures connectivity, not authenticated page load time.
