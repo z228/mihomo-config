@@ -165,8 +165,15 @@ proxy-groups:
   url: https://chatgpt.com/
   proxies:
   - 🇺🇲 美国节点
+  - DMIT落地
   include-all: true
   filter: ^\[aws-
+- name: DMIT落地
+  type: url-test
+  url: https://chatgpt.com/
+  interval: 300
+  tolerance: 50
+  proxies: []
 - name: zc-work
   type: url-test
   url: https://www.gstatic.com/generate_204

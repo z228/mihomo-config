@@ -75,4 +75,22 @@ config["proxy-groups"].push({
   interval: 300,
   tolerance: 50,
 });
+// Test each original entry through the same DMIT exit.
+const dmitExit = incoming.proxies.find(proxy => proxy.name === "[dmit] DMIT-REALITY");
+if (!dmitExit) throw new Error("DMIT exit node is missing");
+const dmitChains = incoming.proxies
+  .filter(proxy => !proxy.name.startsWith("[dmit] ") && !proxy.name.startsWith("AI-CHAIN: "))
+  .map(proxy => ({
+    ...dmitExit,
+    name: "DMIT-CHAIN: " + proxy.name,
+    "dialer-proxy": proxy.name,
+  }));
+for (const group of config["proxy-groups"]) {
+  if (group["include-all"]) {
+    group["exclude-filter"] = [group["exclude-filter"], "^DMIT-CHAIN: "].filter(Boolean).join("|");
+  }
+}
+config.proxies.push(...dmitChains);
+config["proxy-groups"].find(group => group.name === "DMIT落地").proxies =
+  dmitChains.map(proxy => proxy.name);
 $content = ProxyUtils.yaml.safeDump(config);
