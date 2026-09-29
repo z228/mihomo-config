@@ -220,9 +220,10 @@ proxy-groups:
   include-all: true
   filter: ^\[aws-
 - name: ☁️ AWS-EKS
-  type: select
+  type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 300
+  tolerance: 0
   proxies: []
   include-all: true
 - name: Microsoft
