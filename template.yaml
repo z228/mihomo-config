@@ -32,6 +32,7 @@ rules:
 - PROCESS-NAME,linphone.exe,DIRECT
 - DOMAIN-SUFFIX,smtp,DIRECT
 - DOMAIN-KEYWORD,aria2,DIRECT
+- RULE-SET,Microsoft,Microsoft
 - DOMAIN-SUFFIX,ampproject.org,🔰国外流量
 - DOMAIN-SUFFIX,appspot.com,🔰国外流量
 - DOMAIN-SUFFIX,blogger.com,🔰国外流量
@@ -1123,7 +1124,6 @@ rules:
 - DOMAIN,images-cn.ssl-images-amazon.com,DIRECT
 - IP-CIDR,119.28.28.28/32,DIRECT,no-resolve
 - GEOIP,CN,DIRECT
-- RULE-SET,Microsoft,Microsoft
 - MATCH,⚓️其他流量
 rule-providers:
   OpenAI:
