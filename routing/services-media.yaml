@@ -1,18 +1,18 @@
 # Ordered routing rules; preserve first-match precedence.
 rules:
-- DOMAIN-SUFFIX,aaplimg.com,🍎苹果服务
-- DOMAIN-SUFFIX,apple.co,🍎苹果服务
-- DOMAIN-SUFFIX,apple.com,🍎苹果服务
-- DOMAIN-SUFFIX,apple-cloudkit.com,🍎苹果服务
-- DOMAIN-SUFFIX,appstore.com,🍎苹果服务
-- DOMAIN-SUFFIX,cdn-apple.com,🍎苹果服务
-- DOMAIN-SUFFIX,crashlytics.com,🍎苹果服务
-- DOMAIN-SUFFIX,icloud.com,🍎苹果服务
-- DOMAIN-SUFFIX,icloud-content.com,🍎苹果服务
-- DOMAIN-SUFFIX,me.com,🍎苹果服务
-- DOMAIN-SUFFIX,mzstatic.com,🍎苹果服务
-- DOMAIN,www-cdn.icloud.com.akadns.net,🍎苹果服务
-- RULE-SET,Telegram,✈️Telegram
+- DOMAIN-SUFFIX,aaplimg.com,DIRECT
+- DOMAIN-SUFFIX,apple.co,DIRECT
+- DOMAIN-SUFFIX,apple.com,DIRECT
+- DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
+- DOMAIN-SUFFIX,appstore.com,DIRECT
+- DOMAIN-SUFFIX,cdn-apple.com,DIRECT
+- DOMAIN-SUFFIX,crashlytics.com,DIRECT
+- DOMAIN-SUFFIX,icloud.com,DIRECT
+- DOMAIN-SUFFIX,icloud-content.com,DIRECT
+- DOMAIN-SUFFIX,me.com,DIRECT
+- DOMAIN-SUFFIX,mzstatic.com,DIRECT
+- DOMAIN,www-cdn.icloud.com.akadns.net,DIRECT
+- RULE-SET,Telegram,🔰国外流量
 - RULE-SET,YouTube,🎬Youtube
 - DOMAIN-SUFFIX,netflix.com,🎬Netflix
 - DOMAIN-SUFFIX,netflix.net,🎬Netflix
@@ -188,8 +188,8 @@ rules:
 - DOMAIN-SUFFIX,googlevideo.com,🎬国外媒体
 - DOMAIN-SUFFIX,youtube.com,🎬国外媒体
 - DOMAIN,youtubei.googleapis.com,🎬国外媒体
-- DOMAIN-SUFFIX,biliapi.com,🎬哔哩哔哩
-- DOMAIN-SUFFIX,biliapi.net,🎬哔哩哔哩
-- DOMAIN-SUFFIX,bilibili.com,🎬哔哩哔哩
-- DOMAIN-SUFFIX,bilibili.tv,🎬哔哩哔哩
-- DOMAIN-SUFFIX,bilivideo.com,🎬哔哩哔哩
+- DOMAIN-SUFFIX,biliapi.com,DIRECT
+- DOMAIN-SUFFIX,biliapi.net,DIRECT
+- DOMAIN-SUFFIX,bilibili.com,DIRECT
+- DOMAIN-SUFFIX,bilibili.tv,DIRECT
+- DOMAIN-SUFFIX,bilivideo.com,DIRECT

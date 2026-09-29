@@ -113,8 +113,7 @@ proxy-groups:
   type: select
   proxies:
   - 自动选择
-  - 故障转移
-  - 🚀直接连接
+  - DIRECT
   include-all: true
 - name: 自动选择
   type: url-test
@@ -122,24 +121,13 @@ proxy-groups:
   url: http://www.gstatic.com/generate_204
   proxies: []
   include-all: true
-- name: 故障转移
-  type: fallback
-  interval: 7200
-  url: http://www.gstatic.com/generate_204
-  proxies: []
-  include-all: true
 - name: ⚓️其他流量
   type: select
   proxies:
   - 🔰国外流量
-  - 🚀直接连接
+  - DIRECT
   include-all: true
   filter: ^\[aws-
-- name: ✈️Telegram
-  type: select
-  proxies:
-  - 🔰国外流量
-  include-all: true
 - name: 🎬Youtube
   type: select
   proxies:
@@ -150,29 +138,11 @@ proxy-groups:
   proxies:
   - 🔰国外流量
   include-all: true
-- name: 🎬哔哩哔哩
-  type: select
-  proxies:
-  - 🚀直接连接
-  include-all: true
 - name: 🎬国外媒体
   type: select
   proxies:
   - 🔰国外流量
   include-all: true
-- name: 🍎苹果服务
-  type: select
-  proxies:
-  - 🚀直接连接
-  - 🔰国外流量
-  include-all: true
-  filter: ^\[aws-
-- name: 🚀直接连接
-  type: select
-  proxies:
-  - DIRECT
-  include-all: true
-  filter: ^\[aws-
 - name: 🇺🇲 美国节点
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -181,22 +151,6 @@ proxy-groups:
   proxies: []
   include-all: true
   filter: 美国|US|United States|America|🇺🇸
-- name: 🇯🇵 日本节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 180
-  tolerance: 50
-  proxies: []
-  include-all: true
-  filter: 日本|JP|Japan|🇯🇵
-- name: 🇸🇬 新加坡节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 180
-  tolerance: 50
-  proxies: []
-  include-all: true
-  filter: 新加坡|狮城|SG|Singapore|🇸🇬
 - name: 🇭🇰 香港节点
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -205,14 +159,6 @@ proxy-groups:
   proxies: []
   include-all: true
   filter: 香港|HK|Hong Kong|HongKong|🇭🇰
-- name: 🇪🇺 欧洲节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 180
-  tolerance: 50
-  proxies: []
-  include-all: true
-  filter: 德国|英国|法国|荷兰|欧洲|EU|Europe|Germany|UK|France|Netherlands|Ireland|爱尔兰|🇩🇪|🇬🇧|🇫🇷
 - name: AI
   type: select
   proxies:
@@ -224,13 +170,8 @@ proxy-groups:
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 0
-  proxies: []
-  include-all: true
-- name: Microsoft
-  type: select
   proxies:
   - DIRECT
-  - 🔰国外流量
   include-all: true
 - name: emby
   type: url-test

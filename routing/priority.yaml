@@ -21,7 +21,17 @@ rules:
 - DOMAIN-SUFFIX,eks.eu-west-1.amazonaws.com,☁️ AWS-EKS
 - DOMAIN-SUFFIX,sts.amazonaws.com,☁️ AWS-EKS
 - DOMAIN-SUFFIX,amazonaws.com,☁️ AWS-EKS
+- DOMAIN-SUFFIX,aws.amazon.com,☁️ AWS-EKS
+- DOMAIN-SUFFIX,api.aws,☁️ AWS-EKS
+- DOMAIN-SUFFIX,signin.aws,☁️ AWS-EKS
+- DOMAIN-SUFFIX,awsstatic.com,☁️ AWS-EKS
+- DOMAIN-SUFFIX,awsapps.com,☁️ AWS-EKS
+- DOMAIN-SUFFIX,console.aws.a2z.com,☁️ AWS-EKS
+- DOMAIN-SUFFIX,app.aws,☁️ AWS-EKS
+- DOMAIN-SUFFIX,aws.dev,☁️ AWS-EKS
+- DOMAIN-SUFFIX,amazonaws.com.cn,☁️ AWS-EKS
+- DOMAIN-SUFFIX,api.amazonwebservices.com.cn,☁️ AWS-EKS
 - PROCESS-NAME,linphone.exe,DIRECT
 - DOMAIN-SUFFIX,smtp,DIRECT
 - DOMAIN-KEYWORD,aria2,DIRECT
-- RULE-SET,Microsoft,Microsoft
+- RULE-SET,Microsoft,DIRECT
