@@ -47,16 +47,18 @@ if ($arguments.privateUrl) {
 }
 if (overrides.rules) config.rules = [...overrides.rules, ...config.rules];
 // Preserve the current direct TechnoVM node in the ordinary groups.
-const direct = "[technovm] TechnoVM-REALITY";
-if (!config.proxies.some(proxy => proxy.name === direct)) {
+const directNames = config.proxies
+  .filter(proxy => proxy.name.startsWith("[technovm] "))
+  .map(proxy => proxy.name);
+if (!directNames.length) {
   throw new Error("TechnoVM nodes are missing");
 }
 for (const group of config["proxy-groups"]) {
   if (group.name === "yyssrr") continue;
   group.proxies = group["include-all"]
-    ? [...new Set((group.proxies || []).filter(name => name !== direct))]
-    : [...new Set([...(group.proxies || []), direct])];
-  if (group.filter && !new RegExp(group.filter).test(direct)) {
+    ? [...new Set((group.proxies || []).filter(name => !directNames.includes(name)))]
+    : [...new Set([...(group.proxies || []), ...directNames])];
+  if (group.filter && directNames.some(name => !new RegExp(group.filter).test(name))) {
     group.filter = "(?:" + group.filter + ")|^\\[technovm\\] ";
   }
 }
