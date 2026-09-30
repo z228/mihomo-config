@@ -48,7 +48,7 @@ if ($arguments.privateUrl) {
 if (overrides.rules) config.rules = [...overrides.rules, ...config.rules];
 // Preserve the current direct TechnoVM node in the ordinary groups.
 const directNames = config.proxies
-  .filter(proxy => proxy.name.startsWith("[technovm] "))
+  .filter(proxy => proxy.name.startsWith("[xz] "))
   .map(proxy => proxy.name);
 if (!directNames.length) {
   throw new Error("TechnoVM nodes are missing");
@@ -59,7 +59,7 @@ for (const group of config["proxy-groups"]) {
     ? [...new Set((group.proxies || []).filter(name => !directNames.includes(name)))]
     : [...new Set([...(group.proxies || []), ...directNames])];
   if (group.filter && directNames.some(name => !new RegExp(group.filter).test(name))) {
-    group.filter = "(?:" + group.filter + ")|^\\[technovm\\] ";
+    group.filter = "(?:" + group.filter + ")|^\\[xz\\] ";
   }
 }
 $content = ProxyUtils.yaml.safeDump(config);

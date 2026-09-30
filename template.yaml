@@ -157,7 +157,7 @@ proxy-groups:
   tolerance: 50
   proxies: []
   include-all: true
-  exclude-filter: '^\[yyssrr?\] |^\[technovm\] AWS-Singapore(?:-|$)'
+  exclude-filter: '^\[yyssrr?\] |^\[xz\] AWS-Singapore(?:-|$)'
   filter: 美国|US|United States|America|🇺🇸
 - name: 🇭🇰 香港节点
   type: url-test
