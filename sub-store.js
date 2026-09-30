@@ -54,7 +54,7 @@ if (!directNames.length) {
   throw new Error("TechnoVM nodes are missing");
 }
 for (const group of config["proxy-groups"]) {
-  if (group.name === "yyssrr") continue;
+  if (group.name === "yyssrr" || group.name === "🇺🇲 美国节点") continue;
   group.proxies = group["include-all"]
     ? [...new Set((group.proxies || []).filter(name => !directNames.includes(name)))]
     : [...new Set([...(group.proxies || []), ...directNames])];

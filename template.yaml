@@ -157,8 +157,8 @@ proxy-groups:
   tolerance: 50
   proxies: []
   include-all: true
-  exclude-filter: '^\[yyssrr?\] |^\[xz\] SG(?:-|$)'
-  filter: 美国|US|United States|America|🇺🇸
+  exclude-filter: '^\[yyssrr?\] '
+  filter: (?i)美国|lax
 - name: 🇭🇰 香港节点
   type: url-test
   url: http://www.gstatic.com/generate_204
