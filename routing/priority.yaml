@@ -35,4 +35,7 @@ rules:
 - PROCESS-NAME,linphone.exe,DIRECT
 - DOMAIN-SUFFIX,smtp,DIRECT
 - DOMAIN-KEYWORD,aria2,DIRECT
+# Match GitHub before the broader Microsoft direct rules.
+- DOMAIN-KEYWORD,github,🔰国外流量
+- DOMAIN-SUFFIX,ghcr.io,🔰国外流量
 - RULE-SET,Microsoft,DIRECT

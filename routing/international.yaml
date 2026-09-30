@@ -370,7 +370,6 @@ rules:
 - DOMAIN-SUFFIX,zello.com,🔰国外流量
 - DOMAIN-SUFFIX,zeronet.io,🔰国外流量
 - DOMAIN-SUFFIX,zoom.us,🔰国外流量
-- DOMAIN-KEYWORD,github,🔰国外流量
 - DOMAIN-KEYWORD,jav,🔰国外流量
 - DOMAIN-KEYWORD,pinterest,🔰国外流量
 - DOMAIN-KEYWORD,porn,🔰国外流量
