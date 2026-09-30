@@ -116,41 +116,48 @@ proxy-groups:
   - 自动选择
   - DIRECT
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
 - name: 自动选择
   type: url-test
   interval: 86400
   url: http://www.gstatic.com/generate_204
   proxies: []
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
 - name: ⚓️其他流量
   type: select
   proxies:
   - 🔰国外流量
   - DIRECT
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
   filter: ^\[aws-
 - name: 🎬Youtube
   type: select
   proxies:
   - 🔰国外流量
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
 - name: 🎬Netflix
   type: select
   proxies:
   - 🔰国外流量
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
 - name: 🎬国外媒体
   type: select
   proxies:
   - 🔰国外流量
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
 - name: 🇺🇲 美国节点
   type: url-test
-  url: https://chatgpt.com/
+  url: http://www.gstatic.com/generate_204
   interval: 180
   tolerance: 50
   proxies: []
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
   filter: 美国|US|United States|America|🇺🇸
 - name: 🇭🇰 香港节点
   type: url-test
@@ -159,50 +166,54 @@ proxy-groups:
   tolerance: 50
   proxies: []
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
   filter: 香港|HK|Hong Kong|HongKong|🇭🇰
 - name: AI
   type: select
-  url: https://chatgpt.com/
+  url: http://www.gstatic.com/generate_204
   proxies:
   - 🇺🇲 美国节点
-  - DMIT落地
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
   filter: ^\[aws-
-- name: DMIT落地
-  type: url-test
-  url: https://chatgpt.com/
-  interval: 300
-  tolerance: 50
-  proxies: []
 - name: zc-work
   type: url-test
-  url: https://www.gstatic.com/generate_204
+  url: http://www.gstatic.com/generate_204
   interval: 300
   tolerance: 0
   proxies:
   - DIRECT
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
 - name: emby
   type: url-test
   include-all: true
-  url: https://link00.yyssr.org:2053/web/index.html
+  exclude-filter: '^\[yyssrr\] '
+  url: http://www.gstatic.com/generate_204
   interval: 300
   tolerance: 0
 
 - name: AWS-Singapore
   type: url-test
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
   proxies:
   - DIRECT
-  url: https://ap-southeast-1.console.aws.amazon.com/
+  url: http://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
 
 - name: AWS-US
   type: url-test
   include-all: true
+  exclude-filter: '^\[yyssrr\] '
   proxies:
   - DIRECT
-  url: https://us-east-1.console.aws.amazon.com/
+  url: http://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
+- name: yyssrr
+  type: select
+  include-all: true
+  filter: '^\[yyssrr\] '
+  url: http://www.gstatic.com/generate_204

@@ -46,25 +46,18 @@ if ($arguments.privateUrl) {
   overrides = privateConfig["x-private-overrides"];
 }
 if (overrides.rules) config.rules = [...overrides.rules, ...config.rules];
-for (const group of config["proxy-groups"]) {
-  if (overrides.testUrls?.[group.name]) group.url = overrides.testUrls[group.name];
+// Preserve the current direct TechnoVM node in the ordinary groups.
+const direct = "[technovm] TechnoVM-REALITY";
+if (!config.proxies.some(proxy => proxy.name === direct)) {
+  throw new Error("TechnoVM nodes are missing");
 }
-// Test each original entry through the same DMIT exit.
-const dmitExit = incoming.proxies.find(proxy => proxy.name === "[dmit] DMIT-REALITY");
-if (!dmitExit) throw new Error("DMIT exit node is missing");
-const dmitChains = incoming.proxies
-  .filter(proxy => !proxy.name.startsWith("[dmit] ") && !proxy.name.startsWith("AI-CHAIN: "))
-  .map(proxy => ({
-    ...dmitExit,
-    name: "DMIT-CHAIN: " + proxy.name,
-    "dialer-proxy": proxy.name,
-  }));
 for (const group of config["proxy-groups"]) {
-  if (group["include-all"]) {
-    group["exclude-filter"] = [group["exclude-filter"], "^DMIT-CHAIN: "].filter(Boolean).join("|");
+  if (group.name === "yyssrr") continue;
+  group.proxies = group["include-all"]
+    ? [...new Set((group.proxies || []).filter(name => name !== direct))]
+    : [...new Set([...(group.proxies || []), direct])];
+  if (group.filter && !new RegExp(group.filter).test(direct)) {
+    group.filter = "(?:" + group.filter + ")|^\\[technovm\\] ";
   }
 }
-config.proxies.push(...dmitChains);
-config["proxy-groups"].find(group => group.name === "DMIT落地").proxies =
-  dmitChains.map(proxy => proxy.name);
 $content = ProxyUtils.yaml.safeDump(config);

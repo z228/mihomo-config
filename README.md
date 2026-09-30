@@ -20,8 +20,9 @@ service fetches its main branch on request; Sub-Store stores no override copy.
 No GitHub credentials are stored in Sub-Store.
 
 Native include-all and filter options populate groups from the selected source.
-zc-work includes every node. Private overrides can supply rules and testUrls
-inside x-private-overrides; the runtime adapter removes this input-only field.
+yyssrr nodes appear only in the yyssrr selector; all other groups exclude them.
+Private overrides supply rules inside x-private-overrides. Group latency checks
+use http://www.gstatic.com/generate_204; private testUrls are not applied.
 
 The generated Sub-Store file URL, not the script URL, belongs in Clash.
 The generated configuration contains credentials and must remain private.
@@ -64,9 +65,13 @@ from one provider must not be presented as aggregate usage across all providers.
 
 ## Regional AWS routing
 
-AWS-Singapore tests ap-southeast-1.console.aws.amazon.com; AWS-US tests
-us-east-1.console.aws.amazon.com as a representative US destination. Both include
-all source nodes and DIRECT. Regional console, sign-in and API rules run before
-general AWS rules; unrecognized/global AWS domains retain the existing zc-work
-policy. Private work-domain overrides remain first. A console HEAD response can
-be a login redirect; this measures connectivity, not authenticated page load time.
+AWS-Singapore and AWS-US use the standard generate_204 latency endpoint and
+include non-yyssrr source nodes and DIRECT. Regional console, sign-in and API
+rules run before general AWS rules; unrecognized/global AWS domains retain the
+existing zc-work policy. Private work-domain overrides remain first.
+
+## Direct TechnoVM inclusion
+
+The generator preserves the direct TechnoVM node in ordinary groups, including
+regional groups. The yyssrr selector contains only yyssrr nodes. Retired DMIT
+nodes and chain groups are not generated.
