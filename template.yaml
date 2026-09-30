@@ -152,12 +152,12 @@ proxy-groups:
   exclude-filter: '^\[yyssrr?\] '
 - name: 🇺🇲 美国节点
   type: url-test
-  url: http://www.gstatic.com/generate_204
+  url: https://chatgpt.com
   interval: 180
   tolerance: 50
   proxies: []
   include-all: true
-  exclude-filter: '^\[yyssrr?\] |^\[xz\] AWS-Singapore(?:-|$)'
+  exclude-filter: '^\[yyssrr?\] |^\[xz\] SG(?:-|$)'
   filter: 美国|US|United States|America|🇺🇸
 - name: 🇭🇰 香港节点
   type: url-test
@@ -175,10 +175,10 @@ proxy-groups:
   - 🇺🇲 美国节点
   include-all: true
   exclude-filter: '^\[yyssrr?\] '
-  filter: ^\[aws-
+  filter: ^\[xz-
 - name: zc-work
   type: url-test
-  url: http://www.gstatic.com/generate_204
+  url: https://dev.ilos-tunstall.com/
   interval: 300
   tolerance: 0
   proxies:
@@ -189,7 +189,7 @@ proxy-groups:
   type: url-test
   include-all: true
   exclude-filter: '^\[yyssrr?\] '
-  url: http://www.gstatic.com/generate_204
+  url: https://link00.yyssr.org:2053
   interval: 300
   tolerance: 0
 
