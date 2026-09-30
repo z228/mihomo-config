@@ -116,40 +116,40 @@ proxy-groups:
   - 自动选择
   - DIRECT
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
 - name: 自动选择
   type: url-test
   interval: 86400
   url: http://www.gstatic.com/generate_204
   proxies: []
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
 - name: ⚓️其他流量
   type: select
   proxies:
   - 🔰国外流量
   - DIRECT
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
   filter: ^\[aws-
 - name: 🎬Youtube
   type: select
   proxies:
   - 🔰国外流量
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
 - name: 🎬Netflix
   type: select
   proxies:
   - 🔰国外流量
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
 - name: 🎬国外媒体
   type: select
   proxies:
   - 🔰国外流量
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
 - name: 🇺🇲 美国节点
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -157,7 +157,7 @@ proxy-groups:
   tolerance: 50
   proxies: []
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
   filter: 美国|US|United States|America|🇺🇸
 - name: 🇭🇰 香港节点
   type: url-test
@@ -166,7 +166,7 @@ proxy-groups:
   tolerance: 50
   proxies: []
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
   filter: 香港|HK|Hong Kong|HongKong|🇭🇰
 - name: AI
   type: select
@@ -174,7 +174,7 @@ proxy-groups:
   proxies:
   - 🇺🇲 美国节点
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
   filter: ^\[aws-
 - name: zc-work
   type: url-test
@@ -184,11 +184,11 @@ proxy-groups:
   proxies:
   - DIRECT
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
 - name: emby
   type: url-test
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
   url: http://www.gstatic.com/generate_204
   interval: 300
   tolerance: 0
@@ -196,7 +196,7 @@ proxy-groups:
 - name: AWS-Singapore
   type: url-test
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
   proxies:
   - DIRECT
   url: http://www.gstatic.com/generate_204
@@ -206,7 +206,7 @@ proxy-groups:
 - name: AWS-US
   type: url-test
   include-all: true
-  exclude-filter: '^\[yyssrr\] '
+  exclude-filter: '^\[yyssrr?\] '
   proxies:
   - DIRECT
   url: http://www.gstatic.com/generate_204
@@ -215,5 +215,5 @@ proxy-groups:
 - name: yyssrr
   type: select
   include-all: true
-  filter: '^\[yyssrr\] '
+  filter: '^\[yyssrr?\] '
   url: http://www.gstatic.com/generate_204
