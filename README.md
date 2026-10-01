@@ -21,8 +21,9 @@ No GitHub credentials are stored in Sub-Store.
 
 Native include-all and filter options populate groups from the selected source.
 yyssrr nodes appear only in the yyssrr selector; all other groups exclude them.
-Private overrides supply rules inside x-private-overrides. Group latency checks
-use http://www.gstatic.com/generate_204; private testUrls are not applied.
+Private overrides supply rules inside x-private-overrides. Most group latency checks
+use http://www.gstatic.com/generate_204; regional AWS groups use their regional
+EC2 API endpoints. Private testUrls are not applied.
 
 The generated Sub-Store file URL, not the script URL, belongs in Clash.
 The generated configuration contains credentials and must remain private.
@@ -46,7 +47,8 @@ The remote script accepts privateUrl in its URL fragment. When provided, it fetc
 
 The runtime fetches routing files concurrently from the same Git revision as the
 template, then merges their rules in x-rule-files order. File order and rule order
-are significant: priority exceptions, international destinations, services/media,
+are significant: media destinations, regional AWS destinations, priority exceptions,
+international destinations, remaining services,
 direct destinations, then the final MATCH fallback. Private rules are prepended.
 A missing or invalid section fails generation instead of silently dropping rules.
 The x-rule-files field is removed from the generated configuration.
@@ -65,8 +67,12 @@ from one provider must not be presented as aggregate usage across all providers.
 
 ## Regional AWS routing
 
-AWS-Singapore and AWS-US use the standard generate_204 latency endpoint and
-include non-yyssrr source nodes and DIRECT. Regional console, sign-in and API
+AWS-Singapore and AWS-US probe the EC2 API in ap-southeast-1 and us-east-1,
+respectively, and include non-yyssrr source nodes and DIRECT. The unsigned
+DescribeRegions request returns HTTP 400 without redirecting to a global website;
+health checks accept HTTP responses without requiring a success status. This
+measures regional endpoint reachability, not authenticated API access. The general
+automatic selection group checks latency every 300 seconds. Regional console, sign-in and API
 rules run before general AWS rules; unrecognized/global AWS domains retain the
 existing zc-work policy. Private work-domain overrides remain first.
 
