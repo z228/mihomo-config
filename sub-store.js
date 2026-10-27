@@ -62,4 +62,5 @@ for (const group of config["proxy-groups"]) {
     group.filter = "(?:" + group.filter + ")|^\\[xz\\] ";
   }
 }
+if (overrides["proxy-groups"]) config["proxy-groups"].push(...overrides["proxy-groups"]);
 $content = ProxyUtils.yaml.safeDump(config);
