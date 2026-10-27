@@ -42,3 +42,4 @@ payload:
 - DOMAIN,workos.imgix.net
 - PROCESS-NAME,ChatGPT.exe
 - PROCESS-NAME,codex.exe
+- PROCESS-NAME,Grok Bot.exe
