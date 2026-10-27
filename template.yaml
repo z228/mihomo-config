@@ -109,7 +109,7 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/z228/mihomo-config/main/rules/ai.yaml
     path: ./ruleset/AI.yaml
-    interval: 86400
+    interval: 300
 proxy-groups:
 - name: 🔰国外流量
   type: select
