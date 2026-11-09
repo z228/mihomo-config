@@ -43,7 +43,24 @@ if (yyssrSources.length) {
   if (!Array.isArray(resolvers) || !resolvers.length || resolvers.some(value => typeof value !== "string" || !value)) {
     throw new Error("The yyssr proxy DNS is missing or invalid");
   }
-  config.dns["proxy-server-nameserver"] = resolvers;
+  if (!Array.isArray(config.dns["proxy-server-nameserver"]) || !config.dns["proxy-server-nameserver"].length) {
+    config.dns["proxy-server-nameserver"] = ["https://doh.pub/dns-query", "https://dns.alidns.com/dns-query", "tls://223.5.5.5"];
+  }
+  const sourcePrefix = `[${source.name}] `;
+  const hostname = proxy => {
+    if (typeof proxy.server !== "string" || proxy.server.includes(":") || /^\d{1,3}(\.\d{1,3}){3}$/.test(proxy.server)) return "";
+    return proxy.server.toLowerCase().replace(/\.$/, "");
+  };
+  const yyssrHosts = new Set(config.proxies
+    .filter(proxy => proxy.name.startsWith(sourcePrefix)).map(hostname).filter(Boolean));
+  if (config.proxies.some(proxy => !proxy.name.startsWith(sourcePrefix) && yyssrHosts.has(hostname(proxy)))) {
+    throw new Error("yyssr and another source share a node domain; DNS isolation is ambiguous");
+  }
+  const yyssrPolicies = [...yyssrHosts].map(host => [host, resolvers]);
+  config.dns["proxy-server-nameserver-policy"] = {
+    ...config.dns["proxy-server-nameserver-policy"],
+    ...Object.fromEntries(yyssrPolicies),
+  };
 }
 for (const proxy of config.proxies) {
   if (/^\[aws-/.test(proxy.name) && proxy["reality-opts"]) {
