@@ -33,34 +33,37 @@ if (!Array.isArray(incoming?.proxies) || !incoming.proxies.length) {
 config.proxies = incoming.proxies;
 const collection = ($substore.read("collections") || [])
   .find(item => item.name === $file.sourceName);
-const yyssrSources = (collection?.subscriptions || []).filter(name => /^yyssr/i.test(name));
+const selectedSources = collection?.subscriptions || [];
+const yyssrSources = selectedSources.filter(name => /^yyssr/i.test(name));
 if (yyssrSources.length > 1) throw new Error("Multiple yyssr sources need separate DNS configurations");
-if (yyssrSources.length) {
-  const source = ($substore.read("subs") || []).find(item => item.name === yyssrSources[0]);
-  if (source?.source !== "remote" || !source.url) throw new Error("The yyssr source URL is missing");
-  const sourceResponse = await $substore.http.get({ url: source.url, headers: { "User-Agent": "clash.meta" } });
-  const resolvers = ProxyUtils.yaml.safeLoad(sourceResponse.body)?.dns?.["proxy-server-nameserver"];
-  if (!Array.isArray(resolvers) || !resolvers.length || resolvers.some(value => typeof value !== "string" || !value)) {
-    throw new Error("The yyssr proxy DNS is missing or invalid");
-  }
+const dnsSources = selectedSources.filter(name => /^yyssr/i.test(name) || /^akk$/i.test(name));
+if (dnsSources.length) {
   if (!Array.isArray(config.dns["proxy-server-nameserver"]) || !config.dns["proxy-server-nameserver"].length) {
     config.dns["proxy-server-nameserver"] = ["https://doh.pub/dns-query", "https://dns.alidns.com/dns-query", "tls://223.5.5.5"];
   }
-  const sourcePrefix = `[${source.name}] `;
   const hostname = proxy => {
     if (typeof proxy.server !== "string" || proxy.server.includes(":") || /^\d{1,3}(\.\d{1,3}){3}$/.test(proxy.server)) return "";
     return proxy.server.toLowerCase().replace(/\.$/, "");
   };
-  const yyssrHosts = new Set(config.proxies
-    .filter(proxy => proxy.name.startsWith(sourcePrefix)).map(hostname).filter(Boolean));
-  if (config.proxies.some(proxy => !proxy.name.startsWith(sourcePrefix) && yyssrHosts.has(hostname(proxy)))) {
-    throw new Error("yyssr and another source share a node domain; DNS isolation is ambiguous");
+  for (const sourceName of dnsSources) {
+    const source = ($substore.read("subs") || []).find(item => item.name === sourceName);
+    if (source?.source !== "remote" || !source.url) throw new Error("The " + sourceName + " source URL is missing");
+    const sourceResponse = await $substore.http.get({ url: source.url, headers: { "User-Agent": "clash.meta" } });
+    const resolvers = ProxyUtils.yaml.safeLoad(sourceResponse.body)?.dns?.["proxy-server-nameserver"];
+    if (!Array.isArray(resolvers) || !resolvers.length || resolvers.some(value => typeof value !== "string" || !value)) {
+      throw new Error("The " + sourceName + " proxy DNS is missing or invalid");
+    }
+    const sourcePrefix = `[${source.name}] `;
+    const sourceHosts = new Set(config.proxies
+      .filter(proxy => proxy.name.startsWith(sourcePrefix)).map(hostname).filter(Boolean));
+    if (config.proxies.some(proxy => !proxy.name.startsWith(sourcePrefix) && sourceHosts.has(hostname(proxy)))) {
+      throw new Error(sourceName + " and another source share a node domain; DNS isolation is ambiguous");
+    }
+    config.dns["proxy-server-nameserver-policy"] = {
+      ...config.dns["proxy-server-nameserver-policy"],
+      ...Object.fromEntries([...sourceHosts].map(host => [host, resolvers])),
+    };
   }
-  const yyssrPolicies = [...yyssrHosts].map(host => [host, resolvers]);
-  config.dns["proxy-server-nameserver-policy"] = {
-    ...config.dns["proxy-server-nameserver-policy"],
-    ...Object.fromEntries(yyssrPolicies),
-  };
 }
 for (const proxy of config.proxies) {
   if (/^\[aws-/.test(proxy.name) && proxy["reality-opts"]) {
