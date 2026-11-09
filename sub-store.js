@@ -31,6 +31,20 @@ if (!Array.isArray(incoming?.proxies) || !incoming.proxies.length) {
   throw new Error("The selected subscription contains no nodes");
 }
 config.proxies = incoming.proxies;
+const collection = ($substore.read("collections") || [])
+  .find(item => item.name === $file.sourceName);
+const yyssrSources = (collection?.subscriptions || []).filter(name => /^yyssr/i.test(name));
+if (yyssrSources.length > 1) throw new Error("Multiple yyssr sources need separate DNS configurations");
+if (yyssrSources.length) {
+  const source = ($substore.read("subs") || []).find(item => item.name === yyssrSources[0]);
+  if (source?.source !== "remote" || !source.url) throw new Error("The yyssr source URL is missing");
+  const sourceResponse = await $substore.http.get({ url: source.url, headers: { "User-Agent": "clash.meta" } });
+  const resolvers = ProxyUtils.yaml.safeLoad(sourceResponse.body)?.dns?.["proxy-server-nameserver"];
+  if (!Array.isArray(resolvers) || !resolvers.length || resolvers.some(value => typeof value !== "string" || !value)) {
+    throw new Error("The yyssr proxy DNS is missing or invalid");
+  }
+  config.dns["proxy-server-nameserver"] = resolvers;
+}
 for (const proxy of config.proxies) {
   if (/^\[aws-/.test(proxy.name) && proxy["reality-opts"]) {
     proxy["reality-opts"]["support-x25519mlkem768"] = true;
